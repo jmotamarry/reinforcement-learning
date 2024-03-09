@@ -106,8 +106,8 @@ def main():
     agent1 = PPOAgent(num_actions, state_size=2)  # Correct state_size parameter
     agent2 = PPOAgent(num_actions, state_size=2)  # Correct state_size parameter
 
-    num_training_rounds = 5000
-    num_rounds_per_game = 1
+    num_training_rounds = 1000
+    num_rounds_per_game = 5
     scores_agent1 = []
     scores_agent2 = []
 
@@ -116,8 +116,9 @@ def main():
             agent1, agent2, num_rounds=num_rounds_per_game, rewards_matrix=rewards_matrix, memory_size=10
         )
 
-        scores_agent1.append(total_score_agent1)
-        scores_agent2.append(total_score_agent2)
+        if episode % 6 == 0:
+            scores_agent1.append(total_score_agent1)
+            scores_agent2.append(total_score_agent2)
 
         print(f"Episode: {episode + 1}, Agent 1 Score: {total_score_agent1}, Agent 2 Score: {total_score_agent2}")
 
